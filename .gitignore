@@ -1,1 +1,5 @@
-image/*
+*.img
+*.zip
+chroot/*
+mnt/*
+opencv/*
