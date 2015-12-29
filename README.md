@@ -14,15 +14,12 @@ Copy downloaded opencv zipped sources and cloned additional modules into **openc
 Raspbian image (zipped or unzipped) must exist into work directory where **setup.py** installed.
 
 Working directory must have this hierarcy:
-.
-|
-+-- raspbian.zip
-+-- opencv/
-|   |
-|   +-- 3.1.0.zip
-|   +-- opencv_contrib
-+-- README.md
-+-- setup.py
+- raspbian.zip
+- opencv/
+    - 3.1.0.zip
+    - opencv_contrib
+- README.md
+- setup.py
 
 > :exclamation: Compiling is a long process. Please be patient.
 
