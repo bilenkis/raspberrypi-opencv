@@ -85,6 +85,12 @@ def imgprocessing( img ):
                                                     --backup=no \
           "'
     p = Popen([cmd], shell=True)
+    # cp builded package
+    debfile = 'opencv_' + opencv_version + '-1_armhf.deb .'
+    cmd = 'cp -rp chroot/usr/src/opencv-3.1.0/build/' + debfile + ' .'
+    p = Popen([cmd], shell=True)
+    p.wait()
+    print "Building is complete. Checkout work directory. Your .deb is: %s" % debfile
 
 # check opencv
 def check_opencv():
