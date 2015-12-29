@@ -23,21 +23,29 @@ def imgprocessing( img ):
     p.wait()
     p = Popen(['rsync -a opencv/opencv_contrib chroot/usr/src/'], shell=True)
     p.wait()
-    # chroot & run build
+    # make chroot
     ldsofile = 'chroot/etc/ld.so.preload'
     p = Popen(['test', '-e', ldsofile])
     p.wait()
     if not p.returncode:
         p = Popen(['rm', ldsofile])
         p.wait()
+    builddir = 'chroot/usr/src/' + opencvfile + '/build'
+    p = Popen(['test', '-d', builddir])
+    p.wait()
+    if not p.returncode:
+        p = Popen(['rm', '-rf', builddir])
+        p.wait()
     p = Popen(['cp -rp /usr/bin/qemu-arm-static chroot/usr/bin/'], shell=True)
     p.wait()
-    p = Popen(['chroot chroot/ /bin/bash -c "set -xe \
+    # run build
+    cmd = 'chroot chroot/ /bin/bash -c "set -xe \
                                             && apt-get update  \
                                             && apt-get install -y \
                                                     git \
                                                     make \
                                                     cmake \
+                                                    checkinstall \
                                                     libjpeg-dev \
                                                     libtiff5-dev \
                                                     libjasper-dev \
@@ -51,16 +59,10 @@ def imgprocessing( img ):
                                                     libgstreamer0.10-dev \
                                                     libgstreamer-plugins-base0.10-dev \
                                                     libqt4-dev \
-                                            "'], shell=True)
-    p.wait()
-    cmd = 'chroot chroot/ /bin/bash -c "set -xe \
                                             && cd /usr/src \
                                             && mkdir ' + opencvfile + '/build \
                                             && cd ' + opencvfile + '/build \
-                                            && cmake -DCMAKE_TOOLCHAIN_FILE=../platforms/linux/arm-gnueabi.toolchain.cmake \
-                                                    -DCMAKE_C_COMPILER=/usr/bin/arm-linux-gnueabihf-gcc \
-                                                    -DCMAKE_CXX_COMPILER=/usr/bin/arm-linux-gnueabihf-c++ \
-                                                    -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules \
+                                            && cmake -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules \
                                                     -D CMAKE_BUILD_TYPE=RELEASE \
                                                     -D WITH_TBB=ON \
                                                     -D BUILD_NEW_PYTHON_SUPPORT=ON \
