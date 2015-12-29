@@ -10,8 +10,8 @@ Build OpenCV package for Raspbian
 
 ## Before run **setup.py**
 
-Make directory **opencv/** and copy downloaded opencv zipped sources. Cloned additional modules must be moved into this directory also.
-You must put Raspbian image (zipped or unzipped) into work directory where **setup.py** installed.
+Copy downloaded opencv zipped sources and cloned additional modules into **opencv/**.
+Raspbian image (zipped or unzipped) must exist into work directory where **setup.py** installed.
 
 Working directory must have this hierarcy:
     - opencv/
@@ -21,9 +21,7 @@ Working directory must have this hierarcy:
     - chroot/
     - rasbpian.zip
 
-## Notes
-
-Compiling is a long process. Please be patient.
+> :exclamation: Compiling is a long process. Please be patient.
 
 ## List of references
 
