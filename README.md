@@ -3,9 +3,9 @@ Build OpenCV package for Raspbian
 
 ## Requirements
 
-1. Raspbian zipped image. You can download it from: https://downloads.raspberrypi.org/raspbian_latest
-2. OpenCV zipped sources ( for example from: https://github.com/Itseez/opencv/archive/3.1.0.zip)
-3. OpenCV modules ( cloned from: https://github.com/Itseez/opencv_contrib)
+1. Raspbian zipped image. You can download it from [here](https://downloads.raspberrypi.org/raspbian_latest)
+2. OpenCV zipped sources from [github](https://github.com/Itseez/opencv/releases)
+3. OpenCV modules cloned from [github](https://github.com/Itseez/opencv_contrib)
 4. run **python setup.py** with root. This need for **fdisk** and **mount**
 
 ## Before run **setup.py**
@@ -15,12 +15,14 @@ Raspbian image (zipped or unzipped) must exist into work directory where **setup
 
 Working directory must have this hierarcy:
     .
-    |-- raspbian.zip
-    |-- opencv
-    |   |-- 3.1.0.zip
-    |   `-- opencv_contrib
-    |-- README.md
-    `-- setup.py
+    |
+    +-- raspbian.zip
+    +-- opencv/
+    |   |
+    |   +-- 3.1.0.zip
+    |   +-- opencv_contrib
+    +-- README.md
+    +-- setup.py
 
 > :exclamation: Compiling is a long process. Please be patient.
 
